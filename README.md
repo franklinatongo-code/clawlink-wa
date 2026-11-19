@@ -13,22 +13,30 @@
 <a href="#"><img src="https://img.shields.io/badge/License-Apache%202.0-green?style=for-the-badge" alt="License"/></a>
 </p>
 
-<p align="center">
-<b>Install → Scan QR → Your AI answers your WhatsApp chats automatically.</b>
-</p>
+<p align="center"><b>Install → Scan QR → Your AI answers your WhatsApp chats automatically.</b></p>
 
 ---
 
-### What it does
-
-ClawLink WA turns your Android phone into an **AI WhatsApp auto-reply machine**. It runs the real WhatsApp Web client inside your phone's own browser engine (WebView), pairs via QR just like WhatsApp Desktop, and lets an AI answer incoming chats for you — **24/7, hands-free.**
-
-No computer. No Node.js. No self-hosted server. No re-inventing the WhatsApp protocol. Just install the APK on your phone, link your number once, and let the AI do the talking.
+## 📱 What you see
 
 <p align="center">
-<img src="screenshots/Screenshot_20261119-020024_ClawLink%20WA.png" width="260" alt="Home screen showing link status, chats, messages, AI replies"/>
-<img src="screenshots/Screenshot_20261119-020159_ClawLink%20WA.png" width="260" alt="Tools screen with automation settings"/>
+<img src="screenshots/01-home.png" width="250" alt="Home screen showing link status, chats, messages, AI replies"/>
+<img src="screenshots/04-ai-chat.png" width="250" alt="WhatsApp chat with AI reply"/>
+<img src="screenshots/03-live-wa.png" width="250" alt="Live WhatsApp Web inside the app"/>
 </p>
+
+<p align="center">
+<img src="screenshots/02-tools.png" width="250" alt="Tools screen with automation settings"/>
+<img src="screenshots/05-download-page-known-issue.png" width="250" alt="Known issue: download page shows if desktop UA is missing"/>
+</p>
+
+| Screen | What it is |
+|---|---|
+| **Home** | Link status (Connected/Disconnected), chats count, messages count, AI replies count, quick links to open chats / Live WhatsApp Web / Switch Account |
+| **AI chat** | Real WhatsApp chat where the AI has already answered — proof the bot talks back |
+| **Live WhatsApp Web** | The real WhatsApp Web client running inside the app |
+| **Tools** | Quiet hours (DND), away/vacation replies, welcome new contacts, cooldown, auto-react emoji |
+| **Download page** | Known issue — WhatsApp serves its mobile download page instead of the web client when the desktop UA isn't applied |
 
 ---
 
@@ -48,6 +56,7 @@ No computer. No Node.js. No self-hosted server. No re-inventing the WhatsApp pro
 ## 🚀 Get started in 60 seconds
 
 **1. Download**
+
 Get the first working build from **Releases**:
 
 → [Download ClawLink-WA-1.0.apk](https://github.com/franklinatongo-code/clawlink-wa/releases/latest/download/ClawLink-WA-1.0.apk)
@@ -68,38 +77,59 @@ Enter your AI endpoint/key (OpenAI-compatible or NVIDIA NIM). Your AI now answer
 
 ---
 
-## 📱 Requirements
+## 🧠 How it works
+
+ClawLink WA does **not** re-implement WhatsApp. It loads the real `web.whatsapp.com` inside Android's system WebView — the same browser already on your phone — and injects a tiny JavaScript helper that talks back to the app.
+
+```
+┌─────────────────────────────────────────────────────────┐
+│  Your phone                                             │
+│                                                         │
+│  WhatsApp Web (real client, inside WebView)             │
+│  ┌─────────────┐                                       │
+│  │  New msg ✉  │ ──►  Msg.on('add')                    │
+│  └─────────────┘      (wa_boot.js)                      │
+│                                                         │
+│  AndroidWA  (@JavascriptInterface)                      │
+│     inbound JSON ──────────────────────────► Kotlin     │
+│                                                         │
+│  Kotlin engine                                          │
+│     filter → dedupe → seen → typing ON                  │
+│                                                         │
+│  Your AI (OpenAI-compatible / NVIDIA NIM)               │
+│     writes the reply                                    │
+│                                                         │
+│  Kotlin engine                                          │
+│     typing OFF → __waReply() → WhatsApp                 │
+│                                                         │
+│  ┌─────────────┐                                       │
+│  │ Sent ✅     │ ◄────── window.WWebJS.sendMessage      │
+│  └─────────────┘                                       │
+└─────────────────────────────────────────────────────────┘
+```
+
+1. **Pair** — scan the QR with WhatsApp → Linked devices → Link a device
+2. **Listen** — `wa_boot.js` hooks `Msg.on('add')` and forwards new messages through `AndroidWA`
+3. **Think** — Kotlin calls `Llm.reply(chatId, text)`; your AI writes the words
+4. **Send** — `__waReply()` sends the reply back into WhatsApp, optionally quoting the original message
+
+> [!quote] Nothing is templated
+> The AI returns the reply text, and that exact text is what gets sent.
+
+---
+
+## 🔍 Search tags
+
+`whatsapp automation` · `whatsapp auto-reply` · `whatsapp bot android` · `whatsapp web automation` · `ai whatsapp assistant` · `no-server android app` · `webview whatsapp` · `linked devices`
+
+---
+
+## 📋 Requirements
 
 - Android 7.0+ (minSdk 24)
 - Up-to-date **Android System WebView** — WhatsApp Web needs a modern WebView
 - Internet connection
 - An AI API key/endpoint (OpenAI-compatible; NVIDIA NIM endpoint is built in)
-
----
-
-## 🧠 How it works
-
-```
-WhatsApp Web (real, inside WebView)
-   └─ hears a new message → AndroidWA bridge
-                                   ↓
-                             Kotlin engine
-                                   ↓
-                             Your AI writes the reply
-                                   ↓
-                            message sent back to the chat
-```
-
-ClawLink WA does not re-implement WhatsApp. It injects a tiny JavaScript helper into the real web client — the same layer `whatsapp-web.js` uses — so you get WhatsApp's own encryption, sockets, and media handling, with an AI layer on top.
-
----
-
-## 🔍 What this is good for
-
-- Auto-replying to WhatsApp messages while you sleep or work
-- Running an AI concierge on a spare phone number
-- Testing WhatsApp automation without a server or Node.js
-- Keeping a WhatsApp session alive on a dedicated Android device
 
 ---
 
