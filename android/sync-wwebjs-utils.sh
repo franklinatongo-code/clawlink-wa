@@ -18,7 +18,7 @@ fi
   printf '%s\n' '  window.__loadWWebUtils = function () {'
   printf '%s\n' "    if (typeof window.WWebJS !== 'undefined') return;"
   printf '%s\n' '    var exports = {};'
-  printf '%s\n' '    /* ===== upstream whatsapp-web.js src/util/Injected/Utils.js (MIT) ===== */'
+  printf '%s\n' '    /* ===== upstream whatsapp-web.js src/util/Injected/Utils.js (Apache-2.0) ===== */'
   sed "1{/^'use strict';$/d;}" "$SRC"
   printf '%s\n' '    exports.LoadUtils();'
   printf '%s\n' '    /* ===== end upstream ===== */'

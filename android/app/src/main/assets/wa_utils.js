@@ -3,7 +3,7 @@
   window.__loadWWebUtils = function () {
     if (typeof window.WWebJS !== 'undefined') return;
     var exports = {};
-    /* ===== upstream whatsapp-web.js src/util/Injected/Utils.js (MIT) ===== */
+    /* ===== upstream whatsapp-web.js src/util/Injected/Utils.js (Apache-2.0) ===== */
 
 exports.LoadUtils = () => {
     window.WWebJS = {};

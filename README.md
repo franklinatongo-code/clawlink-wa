@@ -84,6 +84,9 @@ To point the AI at your own endpoint, edit the three constants at the top of
 
 ## 🧠 How it works
 
+> 🤓 Want the engine room — webpack module registry, ciphertext events, the bridge threat
+> model, persistence internals and failure modes? Read **[HOW_IT_WORKS.md](HOW_IT_WORKS.md)**.
+
 ClawLink WA does **not** re-implement WhatsApp. It loads the real `web.whatsapp.com` inside Android's system WebView — the same browser already on your phone — and injects a tiny JavaScript helper that talks back to the app.
 
 ```
