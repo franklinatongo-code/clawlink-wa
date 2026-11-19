@@ -66,6 +66,22 @@ Enter your AI endpoint/key (OpenAI-compatible or NVIDIA NIM). Your AI now answer
 
 ---
 
+## 🔨 Build from source
+
+The full Android project is in [`android/`](android). You need JDK 17 and the Android SDK (compileSdk 35).
+
+```bash
+cd android
+./gradlew assembleDebug        # -> app/build/outputs/apk/debug/app-debug.apk
+```
+
+To point the AI at your own endpoint, edit the three constants at the top of
+[`Llm.kt`](android/app/src/main/java/app/waweb/local/Llm.kt) (`BASE_URL`, `MODEL`, `API_KEY`), then rebuild.
+
+> The source module builds as `app.waweb.local`; the published v1.0 APK was packaged from an earlier build as `com.example`.
+
+---
+
 ## 🧠 How it works
 
 ClawLink WA does **not** re-implement WhatsApp. It loads the real `web.whatsapp.com` inside Android's system WebView — the same browser already on your phone — and injects a tiny JavaScript helper that talks back to the app.
@@ -148,12 +164,15 @@ The linked-device session lives in the WebView's cookies + DOM storage/IndexedDB
 
 ### Project layout
 
+Source lives in [`android/`](android) — a standard, buildable Gradle project.
+
 | File | Role |
 |---|---|
-| `MainActivity.kt` | WebView host: settings, UA spoof, origin lock, injection, inbound filtering, dedupe, send, lifecycle |
-| `Llm.kt` | The swap-in AI seam — `reply(text): String?` against any OpenAI-compatible endpoint |
-| `assets/wa_boot.js` | Waits for WhatsApp internals, defines `__waSend`, hooks `Msg.on('add')` + socket state |
-| `assets/wa_utils.js` | Upstream `whatsapp-web.js` helpers (`window.WWebJS.*`), loaded into the page |
+| [`MainActivity.kt`](android/app/src/main/java/app/waweb/local/MainActivity.kt) | WebView host: settings, UA spoof, origin lock, injection, inbound filtering, dedupe, send, lifecycle |
+| [`Llm.kt`](android/app/src/main/java/app/waweb/local/Llm.kt) | The swap-in AI seam — `reply(text): String?` against any OpenAI-compatible endpoint |
+| [`wa_boot.js`](android/app/src/main/assets/wa_boot.js) | Waits for WhatsApp internals, defines `__waSend`, hooks `Msg.on('add')` + socket state |
+| [`wa_utils.js`](android/app/src/main/assets/wa_utils.js) | Upstream `whatsapp-web.js` helpers (`window.WWebJS.*`), loaded into the page |
+| [`AndroidManifest.xml`](android/app/src/main/AndroidManifest.xml) | Permissions, single-activity manifest |
 
 ### Why no Node / no server
 
@@ -169,7 +188,7 @@ The linked-device session lives in the WebView's cookies + DOM storage/IndexedDB
 
 ## 📱 Requirements
 
-- Android 7.0+ (minSdk 24)
+- Android 7.0+ for the published APK (the source project builds with minSdk 26)
 - Up-to-date **Android System WebView** — WhatsApp Web needs a modern WebView
 - Internet connection
 - An AI API key/endpoint (OpenAI-compatible; NVIDIA NIM endpoint is built in)
