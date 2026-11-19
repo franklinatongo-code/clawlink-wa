@@ -4,8 +4,13 @@
 
 ClawLink WA loads the real [WhatsApp Web](https://web.whatsapp.com) inside Android's system WebView. That means it uses WhatsApp's own linked-device client (QR pairing, encryption, media, sync) and layers an AI reply engine on top — instead of re-implementing the WhatsApp protocol.
 
-![ClawLink WA home](screenshots/01-home.png)
-![ClawLink WA tools](screenshots/02-tools.png)
+## Screenshots
+
+![Home — link status & AI replies](screenshots/Screenshot_20261119-020024_ClawLink%20WA.png)
+![Live WhatsApp Web](screenshots/Screenshot_20261119-020032_ClawLink%20WA.png)
+![WhatsApp web client](screenshots/Screenshot_20261119-020124_ClawLink%20WA.png)
+![Tools — auto-reply & quiet hours](screenshots/Screenshot_20261119-020159_ClawLink%20WA.png)
+![WhatsApp chat with AI reply](screenshots/Screenshot_20261119-020835_WhatsApp.png)
 
 ## Download
 
