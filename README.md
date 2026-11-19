@@ -26,17 +26,14 @@
 </p>
 
 <p align="center">
+<img src="screenshots/01-home.png" width="250" alt="Home screen showing link status, chats, messages, AI replies"/>
 <img src="screenshots/02-tools.png" width="250" alt="Tools screen with automation settings"/>
-<img src="screenshots/05-download-page-known-issue.png" width="250" alt="Known issue: download page shows if desktop UA is missing"/>
 </p>
 
 | Screen | What it is |
 |---|---|
 | **Home** | Link status (Connected/Disconnected), chats count, messages count, AI replies count, quick links to open chats / Live WhatsApp Web / Switch Account |
-| **AI chat** | Real WhatsApp chat where the AI has already answered — proof the bot talks back |
-| **Live WhatsApp Web** | The real WhatsApp Web client running inside the app |
 | **Tools** | Quiet hours (DND), away/vacation replies, welcome new contacts, cooldown, auto-react emoji |
-| **Download page** | Known issue — WhatsApp serves its mobile download page instead of the web client when the desktop UA isn't applied |
 
 ---
 
