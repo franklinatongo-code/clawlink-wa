@@ -100,10 +100,64 @@ ClawLink WA does **not** re-implement WhatsApp. It loads the real `web.whatsapp.
 1. **Pair** — scan the QR with WhatsApp → Linked devices → Link a device
 2. **Listen** — `wa_boot.js` hooks `Msg.on('add')` and forwards new messages through `AndroidWA`
 3. **Think** — Kotlin calls `Llm.reply(chatId, text)`; your AI writes the words
-4. **Send** — `__waReply()` sends the reply back into WhatsApp, optionally quoting the original message
+4. **Send** — `__waSend()` (the shipped build exposes it as `__waReply`) sends the reply back into WhatsApp, optionally quoting the original message
 
 > [!quote] Nothing is templated
 > The AI returns the reply text, and that exact text is what gets sent.
+
+### The details, step by step
+
+**1. The shell — a WebView that pretends to be Chrome**
+One full-screen `WebView` loads `https://web.whatsapp.com/`. JavaScript, DOM storage, the database API, and third-party cookies are enabled — that storage *is* where the linked-device session lives. File access is disabled. The user-agent is the system one with `"; wv"` and `"Version/4.0 "` stripped, because WhatsApp serves a cut-down "download the app" page to a stock WebView UA (Chrome gets the real client).
+
+**2. Origin lock — the bridge only talks to WhatsApp**
+`WebViewClient.shouldOverrideUrlLoading` cancels every navigation whose host is not `web.whatsapp.com`, `*.whatsapp.com`, or `*.whatsapp.net`. So the `@JavascriptInterface` bridge (`AndroidWA`) is only ever exposed to WhatsApp's own origin — not to arbitrary pages the WebView might wander onto.
+
+**3. Injection — two files, in order**
+When the page finishes loading on `web.whatsapp.com`, the app evaluates `assets/wa_utils.js` and then `assets/wa_boot.js`:
+- `wa_utils.js` is the upstream `whatsapp-web.js` `Utils.js`, unmodified. It defines `__loadWWebUtils()`.
+- `wa_boot.js` waits for WhatsApp's internal webpack loader (`window.require`) and the `WAWebCollections` module to exist, calls `__loadWWebUtils()`, and only then proceeds. That defines the whole `window.WWebJS.*` helper set (`getChat`, `sendMessage`, `getMessageModel`, `sendChatstate`, `toStickerData`, …) against the **live** WhatsApp app.
+
+Because it retries instead of failing, injection can happen *before* login — scanning the QR does not require a reload.
+
+**4. Inbound — hook the message collection**
+`wa_boot.js` subscribes to `window.require('WAWebCollections').Msg.on('add')` (the same collection whatsapp-web.js hooks). For each event it:
+- ignores non-new messages and `revoked` (deleted) ones,
+- if the message is still `ciphertext` (not yet decrypted), waits for its `change:type` event and processes the decrypted version,
+- serialises the message with `WWebJS.getMessageModel(msg)` and hands the JSON to Kotlin via `AndroidWA.onMessage(json)`.
+
+`onMessage` runs on a **single-thread executor**, so messages are processed one at a time, in order.
+
+**5. Filtering — what deserves a reply**
+In Kotlin, `handleIncoming` reads the message id, `fromMe`, `remote` chat id, type, body, and timestamp, then drops:
+- messages **you** sent (`fromMe`), empty ids, `status@broadcast`,
+- group chats (unless enabled),
+- **backlog**: anything timestamped before the app started (minus a 30 s grace) is history synced on connect, not a new message,
+- **duplicates**: message ids are kept in a persisted, capped (1000-entry) `SharedPreferences` set (`SeenStore`), so reloading the WebView never re-replies to the same message.
+
+Only `type == "chat"` (plain text) is answered; images/documents are ignored for now. A built-in `!ping` → `pong` check confirms the loop is alive.
+
+**6. Think — the AI writes the words**
+If auto-reply is on and an API key is set, Kotlin calls `Llm.reply(text)`, which POSTs an OpenAI-compatible `chat/completions` request (system prompt: *"reply naturally and briefly, plain text, no markdown"* + the user's message) with a 15 s connect / 60 s read timeout. Any OpenAI-shaped endpoint works — OpenAI, Groq, OpenRouter, NVIDIA NIM, or a local Ollama. The returned string is used verbatim. Blank key ⇒ the whole AI path is disabled and nothing is auto-sent.
+
+**7. Send — back into WhatsApp**
+Kotlin evaluates `window.__waSend(chatId, text, quotedId)`. That helper resolves the chat with `WWebJS.getChat`, sends through `WWebJS.sendMessage` (quoting the original message when possible, falling back to an unquoted send if the quote fails), and reports `onSent` / `onError` back to Kotlin. Optional helpers cover typing indicators (`sendChatstate`), presence, read receipts, and stickers (`toStickerData` + `sendMediaAsSticker`).
+
+**8. Persistence — survive restarts and reboots**
+The linked-device session lives in the WebView's cookies + DOM storage/IndexedDB. `CookieManager.flush()` is called in `onPause`, so the login is written to disk; on the next launch the same WhatsApp Web session resumes without re-scanning.
+
+### Project layout
+
+| File | Role |
+|---|---|
+| `MainActivity.kt` | WebView host: settings, UA spoof, origin lock, injection, inbound filtering, dedupe, send, lifecycle |
+| `Llm.kt` | The swap-in AI seam — `reply(text): String?` against any OpenAI-compatible endpoint |
+| `assets/wa_boot.js` | Waits for WhatsApp internals, defines `__waSend`, hooks `Msg.on('add')` + socket state |
+| `assets/wa_utils.js` | Upstream `whatsapp-web.js` helpers (`window.WWebJS.*`), loaded into the page |
+
+### Why no Node / no server
+
+`whatsapp-web.js` normally drives WhatsApp Web by remote-controlling a headless Chrome via Puppeteer. Here the browser is **already** on the phone (the system WebView), and the same helper library is injected straight into the page, so it talks to WhatsApp's live webpack modules directly. That removes Node, Puppeteer, a bundled Chromium, and the whole "run this on a PC" step — at the cost of depending on WhatsApp's internal module names, which occasionally change.
 
 ---
 
