@@ -1,0 +1,4 @@
+# Build artifacts are published in Releases, not committed to the repo.
+*.apk
+*.apks
+*.aab
