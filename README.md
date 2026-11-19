@@ -1,7 +1,7 @@
-# ClawLink WA
+# 🚀 ClawLink WA — AI WhatsApp Auto-Reply on Android
 
 <p align="center">
-<b>AI WhatsApp auto-reply on Android — one tap, one APK, zero servers.</b>
+<b>Install → Scan QR → Your AI answers your WhatsApp chats automatically.</b>
 </p>
 
 <p align="center">
@@ -11,29 +11,21 @@
 <a href="#"><img src="https://img.shields.io/badge/AI%20Auto--Reply-Yes-7C4DFF?style=for-the-badge" alt="AI Auto Reply"/></a>
 <a href="#"><img src="https://img.shields.io/badge/No%20Server-Yes-555&style=for-the-badge" alt="No Server"/></a>
 <a href="#"><img src="https://img.shields.io/badge/License-Apache%202.0-green?style=for-the-badge" alt="License"/></a>
+<a href="https://github.com/franklinatongo-code/clawlink-wa/releases/latest/download/ClawLink-WA-1.0.apk"><img src="https://img.shields.io/badge/Download%20APK-24MB-blue?style=for-the-badge" alt="Download APK"/></a>
 </p>
-
-<p align="center"><b>Install → Scan QR → Your AI answers your WhatsApp chats automatically.</b></p>
 
 ---
 
-## 📱 What you see
+### What it does
+
+**ClawLink WA turns your Android phone into an AI WhatsApp auto-reply machine.** It loads the real WhatsApp Web client inside your phone's own browser (WebView), pairs via QR just like WhatsApp Desktop, and lets an AI answer incoming chats for you — **24/7, hands-free.**
+
+No computer. No Node.js. No self-hosted server. No re-inventing the WhatsApp protocol. Just install the APK on your phone, link your number once, and let the AI do the talking.
 
 <p align="center">
-<img src="screenshots/01-home.png" width="250" alt="Home screen showing link status, chats, messages, AI replies"/>
-<img src="screenshots/04-ai-chat.png" width="250" alt="WhatsApp chat with AI reply"/>
-<img src="screenshots/03-live-wa.png" width="250" alt="Live WhatsApp Web inside the app"/>
+<img src="screenshots/01-home.png" width="260" alt="Home screen showing link status, chats, messages, AI replies"/>
+<img src="screenshots/02-tools.png" width="260" alt="Tools screen with automation settings"/>
 </p>
-
-<p align="center">
-<img src="screenshots/01-home.png" width="250" alt="Home screen showing link status, chats, messages, AI replies"/>
-<img src="screenshots/02-tools.png" width="250" alt="Tools screen with automation settings"/>
-</p>
-
-| Screen | What it is |
-|---|---|
-| **Home** | Link status (Connected/Disconnected), chats count, messages count, AI replies count, quick links to open chats / Live WhatsApp Web / Switch Account |
-| **Tools** | Quiet hours (DND), away/vacation replies, welcome new contacts, cooldown, auto-react emoji |
 
 ---
 
@@ -59,7 +51,7 @@ Get the first working build from **Releases**:
 → [Download ClawLink-WA-1.0.apk](https://github.com/franklinatongo-code/clawlink-wa/releases/latest/download/ClawLink-WA-1.0.apk)
 
 **2. Install**
-Enable “Install unknown apps” for your browser or file manager, then open the APK.  
+Enable "Install unknown apps" for your browser or file manager, then open the APK.  
 Or from a computer:
 
 ```bash
@@ -121,7 +113,7 @@ ClawLink WA does **not** re-implement WhatsApp. It loads the real `web.whatsapp.
 
 ---
 
-## 📋 Requirements
+## 📱 Requirements
 
 - Android 7.0+ (minSdk 24)
 - Up-to-date **Android System WebView** — WhatsApp Web needs a modern WebView
@@ -152,3 +144,9 @@ ClawLink WA does **not** re-implement WhatsApp. It loads the real `web.whatsapp.
 The injected JavaScript helpers derive from [`whatsapp-web.js`](https://github.com/pedroslopez/whatsapp-web.js) (Apache-2.0). See [`THIRD_PARTY_NOTICES.md`](THIRD_PARTY_NOTICES.md) and [`licenses/whatsapp-web.js-LICENSE`](licenses/whatsapp-web.js-LICENSE).
 
 ClawLink WA is not affiliated with or endorsed by WhatsApp, Meta, or the whatsapp-web.js maintainers.
+
+---
+
+<p align="center">
+<b>Star ⭐ this repo if you want to see WhatsApp auto-reply keep evolving.</b>
+</p>
