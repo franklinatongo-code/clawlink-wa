@@ -11,14 +11,14 @@
 <a href="#"><img src="https://img.shields.io/badge/AI%20Auto--Reply-Yes-7C4DFF?style=for-the-badge" alt="AI Auto Reply"/></a>
 <a href="#"><img src="https://img.shields.io/badge/No%20Server-Yes-555&style=for-the-badge" alt="No Server"/></a>
 <a href="#"><img src="https://img.shields.io/badge/License-Apache%202.0-green?style=for-the-badge" alt="License"/></a>
-<a href="https://github.com/franklinatongo-code/clawlink-wa/releases/latest/download/ClawLink-WA-1.0.apk"><img src="https://img.shields.io/badge/Download%20APK-24MB-blue?style=for-the-badge" alt="Download APK"/></a>
+<a href="https://github.com/franklinatongo-code/clawlink-wa/releases/latest/download/ClawLink-WA-1.0.apk"><img src="https://img.shields.io/badge/Download%20APK-63MB-blue?style=for-the-badge" alt="Download APK"/></a>
 </p>
 
 ---
 
 ### What it does
 
-**ClawLink WA turns your Android phone into an AI WhatsApp auto-reply machine.** It loads the real WhatsApp Web client inside your phone's own browser (WebView), pairs via QR just like WhatsApp Desktop, and lets an AI answer incoming chats for you — **24/7, hands-free.**
+**ClawLink WA turns your Android phone into an AI WhatsApp agent.** It loads the real WhatsApp Web client inside your phone's own browser (WebView), pairs just like WhatsApp Desktop, and lets an AI answer chats, understand photos/voice/PDFs, run on a schedule, and act as your chat assistant — **24/7, hands-free.**
 
 No computer. No Node.js. No self-hosted server. No re-inventing the WhatsApp protocol. Just install the APK on your phone, link your number once, and let the AI do the talking.
 
@@ -31,14 +31,80 @@ No computer. No Node.js. No self-hosted server. No re-inventing the WhatsApp pro
 
 ## ✨ Features
 
-- 🤖 **AI auto-reply** — your AI answers incoming WhatsApp chats automatically
-- 🔗 **Real QR linking** — pairs as a genuine WhatsApp linked device
-- 💾 **Persistent session** — survives app restarts and phone reboots; no re-scanning
-- 💬 **Chats & AI replies view** — see conversations and what the AI said
-- 🌐 **Live WhatsApp Web** — open the real web client inside the app
-- 🔄 **Switch account** — cleanly clears the session for a fresh QR
-- 🛠 **Tools** — automation, quiet hours, away/welcome replies, cooldowns, auto-react emoji
-- 📱 **Single APK** — ~24 MB, installs on any Android 7.0+ phone
+A full AI WhatsApp agent and productivity suite in one APK — not just a reply bot.
+
+<details open>
+<summary><b>📲 Linking, persistence & background operation</b></summary>
+
+- **Fast QR pairing** with countdown and instant refresh, **8-digit phone-number pairing code**, and an optional **Live WhatsApp Web** view to inspect or interact with the session
+- **Persistent login** — cookies, localStorage and IndexedDB are kept on-device with auto-reconnect, so you scan once
+- **One-tap Switch Account** — cleanly signs out and shows a fresh QR
+- **24/7 background operation** — foreground service, WakeLock, keepalive alarms, and boot/update auto-restart receivers
+- **Readiness checks** (unrestricted battery, notifications, microphone) and a **Quick Settings tile** to toggle auto-reply from the shade
+- **Home overview** — Online/Saved/Scan badge, Chats / Messages / AI Replies stats, media toggles, and a **1-tap WhatsApp Catch-Up** briefing
+- **Hidden owner key vault** behind the header badge — PIN-protected reveal/copy/activate for your API key
+
+</details>
+
+<details>
+<summary><b>🤖 AI agent & group intelligence</b></summary>
+
+- **8-way parallel, deduplicated pipeline** — durable Room job queue plus per-chat reply locks, so duplicate events never double-reply while different chats reply concurrently
+- **Group intelligence** — separates 1:1 from groups, extracts participant names/JIDs and @mentions, keeps per-group memory, and supports **Mention-Only** mode
+- **Hard send-layer group protection** — when group replies are OFF, messages are blocked at the send/schedule layer, not just by prompt
+- **Media understanding** — vision for photos (retries blurry/refusal results with high-res + contrast), static/animated WebP and Lottie stickers, PDFs/documents, and voice notes via Cloud AI or **offline Vosk**
+- **Natural realism** — typing indicators, read receipts, delay slider, quote replies, optional AI signature
+- **Prompt-injection guard** and per-chat permission tiers (Standard / Restricted / Trusted / Blocked)
+
+</details>
+
+<details>
+<summary><b>💬 Chats workspace & manual AI backup</b></summary>
+
+- **Frosted-glass, sci-fi UI** — single-pane phone layout and list-detail tablet/foldable layout with animated AI status rings
+- **Filters & live search** — All, Unread, Groups, Direct, Leads & CRM; search contacts and previews
+- **Business Command HUD** — live CRM metrics (leads, sales, support, urgent, appointments) and per-chat category badges
+- **Rich bubbles** — group participant labels, quoted previews, media/voice insight chips, Inspect Media, Translate, Read Aloud, Dictation, Export to Markdown
+- **Manual AI dock** — Reply with AI Now, Keep Replying catch-up mode, Smart Draft into the composer, 1-tap Summarize
+- **Quick snippets & attachments** from the composer
+- **Per-contact / per-group rules** — auto-reply toggle, permission tier, custom prompt, language, style, context/N-message overrides, CRM category and saved memory facts
+
+</details>
+
+<details>
+<summary><b>🧠 Personal assistant (Text AI)</b></summary>
+
+- **iMessage-style chat** — streamed replies, live tool status, reactions, copy, delete, TTS and dictation
+- **Natural-language WhatsApp control** — list chats, read/summarize a conversation, update a contact's instructions, save a fact, send a message (respecting group permissions), or schedule one
+- **Multimodal attachments** — images via Android Photo Picker, plus PDFs/audio/text for visual Q&A, OCR and transcription
+- **Contact picker shortcut** and built-in math + device telemetry tools
+
+</details>
+
+<details>
+<summary><b>⚙️ AI brain, context & multi-provider studio</b></summary>
+
+- **Capability toggles** for direct chats, groups, pictures, stickers, files/PDFs, voice and alerts
+- **Voice mode switch** — Off / Cloud / Offline (Vosk) with downloadable language packs
+- **Personality presets** (Friendly Helper, Short & Crisp, Business Formal, Study Tutor, Code Helper, Translator) plus temperature, tokens, delay, streaming, name, prompt, style and language
+- **Context modes** — Hybrid Recent + Summary, Recent only, Summary only — with an N-message reader (1–50) and cached media insights
+- **Business Mode setup** — brand name, reply tone, and a products/services/pricing/hours catalog
+- **Multi-provider routing** — NVIDIA NIM or a custom OpenAI-compatible endpoint, encrypted key, live endpoint tester, **automatic fallback provider**, and a searchable model catalog (All / Vision / Tools / Audio) assigning separate chat, vision and voice models
+
+</details>
+
+<details>
+<summary><b>🧰 Automation, productivity & utility hub</b></summary>
+
+- **WhatsApp automation** — scheduled message queue (sends while the app is closed), Quiet Hours/DND with VIP bypass, Away/Vacation auto-reply, keyword rules (contains / exact / prefix / regex), welcome messages, auto-react, cooldown, snippets, multi-chat broadcast, token leaderboard
+- **Vision & file tester** — run any photo, WebP sticker or PDF through the media pipeline
+- **Focus & notes** — Pomodoro, stopwatch, box breathing, to-do list, habit streaks, quick notes, scratchpad, TTS pad
+- **QR & text** — QR maker (URL/text/wa.me/Wi-Fi), WhatsApp formatting, word/char/line/reading-time stats, case converters, slugger, sort/dedupe/number, extractors, word frequency
+- **Math, finance & health** — scientific evaluator, 8-category unit converter, tip splitter, loan/EMI, BMI, event countdowns
+- **Dev & crypto** — password/passphrase/UUID, JSON, Base64, URL, Hex, Binary, SHA-256/512, MD5, HMAC-SHA256, JWT, regex tester, epoch, ROT13, Morse, world clocks, WCAG contrast, dice/coin/random
+- **Device & diagnostics** — Light/Dark/OLED/System themes, haptics, CPU/RAM/storage/battery/network telemetry, JSON backup & restore (API keys excluded), E2EE session stats, AI/WhatsApp diagnostics and categorized live logs
+
+</details>
 
 ---
 
@@ -46,7 +112,7 @@ No computer. No Node.js. No self-hosted server. No re-inventing the WhatsApp pro
 
 **1. Download**
 
-Get the first working build from **Releases**:
+Get the latest full build from **Releases**:
 
 → [Download ClawLink-WA-1.0.apk](https://github.com/franklinatongo-code/clawlink-wa/releases/latest/download/ClawLink-WA-1.0.apk)
 
@@ -78,7 +144,7 @@ cd android
 To point the AI at your own endpoint, edit the three constants at the top of
 [`Llm.kt`](android/app/src/main/java/app/waweb/local/Llm.kt) (`BASE_URL`, `MODEL`, `API_KEY`), then rebuild.
 
-> The source module builds as `app.waweb.local`; the published v1.0 APK was packaged from an earlier build as `com.example`.
+> The reference source builds as `app.waweb.local`. The published APK is a newer, fuller build packaged as **`com.example.ilabmg`** — the `android/` project here is the reference implementation of the core loop, not a 1:1 mirror of the shipped UI.
 
 ---
 
@@ -167,7 +233,7 @@ The linked-device session lives in the WebView's cookies + DOM storage/IndexedDB
 
 ### Project layout
 
-Source lives in [`android/`](android) — a standard, buildable Gradle project.
+Source lives in [`android/`](android) — a standard, buildable Gradle project implementing the core loop. The published APK adds the full UI, media pipeline, offline speech and tools on top.
 
 | File | Role |
 |---|---|
@@ -203,21 +269,23 @@ Source lives in [`android/`](android) — a standard, buildable Gradle project.
 - **Unofficial client.** This drives the WhatsApp Web client, which Meta does not officially support for automation. Use a **spare number** — bans are possible. For a business, use the official WhatsApp Cloud API.
 - **Background pauses.** Android may throttle a backgrounded WebView; replies are instant when the app is open.
 - **WhatsApp changes.** WhatsApp sometimes renames internal page modules; if replies stop after an update, the injected helper needs a tweak.
-- **Package name.** Build 1.0 uses `com.example` — a real package name is coming in the next release.
+- **Package name.** The build uses `com.example.ilabmg`, so it installs **alongside** any earlier `com.example` build — uninstall the old one first if you only want one.
 
 ---
 
 ## 🔖 Version & package
 
 - Version: **1.0** (versionCode `1`)
-- Package: `com.example`
-- minSdk 24 · targetSdk 36 · ~24 MB APK
+- Package: `com.example.ilabmg`
+- minSdk 24 · targetSdk 36 · ~63 MB APK (includes offline Vosk speech models)
+- No API keys are embedded; add your own in-app
+- SHA-256: `1940a348b0599384d9efc95c6a506f2016a2bd9ef04dc8da852777c57ba16e96`
 
 ---
 
 ## 📄 Third-party
 
-The injected JavaScript helpers derive from [`whatsapp-web.js`](https://github.com/pedroslopez/whatsapp-web.js) (Apache-2.0). See [`THIRD_PARTY_NOTICES.md`](THIRD_PARTY_NOTICES.md) and [`licenses/whatsapp-web.js-LICENSE`](licenses/whatsapp-web.js-LICENSE).
+The reference source's injected helpers derive from [`whatsapp-web.js`](https://github.com/pedroslopez/whatsapp-web.js) (Apache-2.0); the shipped build uses a trimmed, custom helper implementation. See [`THIRD_PARTY_NOTICES.md`](THIRD_PARTY_NOTICES.md) and [`licenses/whatsapp-web.js-LICENSE`](licenses/whatsapp-web.js-LICENSE).
 
 ClawLink WA is not affiliated with or endorsed by WhatsApp, Meta, or the whatsapp-web.js maintainers.
 
