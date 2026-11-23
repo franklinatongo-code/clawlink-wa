@@ -11,7 +11,7 @@
 <a href="#"><img src="https://img.shields.io/badge/AI%20Auto--Reply-Yes-7C4DFF?style=for-the-badge" alt="AI Auto Reply"/></a>
 <a href="#"><img src="https://img.shields.io/badge/No%20Server-Yes-555&style=for-the-badge" alt="No Server"/></a>
 <a href="#"><img src="https://img.shields.io/badge/License-Apache%202.0-green?style=for-the-badge" alt="License"/></a>
-<a href="https://github.com/franklinatongo-code/clawlink-wa/releases/latest/download/ClawLink-WA-1.0.apk"><img src="https://img.shields.io/badge/Download%20APK-63MB-blue?style=for-the-badge" alt="Download APK"/></a>
+<a href="https://github.com/franklinatongo-code/clawlink-wa/releases/latest/download/ClawLink-WA-1.0.apk"><img src="https://img.shields.io/badge/Download%20APK-66MB-blue?style=for-the-badge" alt="Download APK"/></a>
 </p>
 
 ---
@@ -277,9 +277,9 @@ Source lives in [`android/`](android) — a standard, buildable Gradle project i
 
 - Version: **1.0** (versionCode `1`)
 - Package: `com.example.ilabmg`
-- minSdk 24 · targetSdk 36 · ~63 MB APK (includes offline Vosk speech models)
+- minSdk 24 · targetSdk 36 · ~66 MB APK (includes offline Vosk speech models)
 - No API keys are embedded; add your own in-app
-- SHA-256: `1940a348b0599384d9efc95c6a506f2016a2bd9ef04dc8da852777c57ba16e96`
+- SHA-256: `d1253979798ba6283debf46a8f6128c98b1250d4847e6b109e404bd5a106db3e`
 
 ---
 
