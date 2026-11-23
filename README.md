@@ -142,9 +142,14 @@ A full AI WhatsApp agent and productivity suite in one APK — not just a reply 
 
 **1. Download**
 
-Get the latest full build from **Releases**:
+Pick an edition — same app, different theme (different package names, so both can be installed side by side):
 
-→ [Download ClawLink-WA-1.0.apk](https://github.com/franklinatongo-code/clawlink-wa/releases/latest/download/ClawLink-WA-1.0.apk)
+| Edition | Download |
+|---|---|
+| 🔵 **Blue** (main) | [ClawLink-WA-1.0.apk](https://github.com/franklinatongo-code/clawlink-wa/releases/latest/download/ClawLink-WA-1.0.apk) |
+| 🟢 **Classic** | [ClawLink-WA-1.0-ilabmg.apk](https://github.com/franklinatongo-code/clawlink-wa/releases/download/v1.0.0-blue/ClawLink-WA-1.0-ilabmg.apk) |
+
+Both links live on the [latest release](https://github.com/franklinatongo-code/clawlink-wa/releases/latest).
 
 **2. Install**
 Enable "Install unknown apps" for your browser or file manager, then open the APK.  
@@ -174,7 +179,7 @@ cd android
 To point the AI at your own endpoint, edit the three constants at the top of
 [`Llm.kt`](android/app/src/main/java/app/waweb/local/Llm.kt) (`BASE_URL`, `MODEL`, `API_KEY`), then rebuild.
 
-> The reference source builds as `app.waweb.local`. The published APK is a newer, fuller build packaged as **`com.example.ilabmg`** — the `android/` project here is the reference implementation of the core loop, not a 1:1 mirror of the shipped UI.
+> The reference source builds as `app.waweb.local`. The published APKs are newer, fuller builds packaged as **`com.example.tsegst`** (Blue, main) and **`com.example.ilabmg`** (Classic) — the `android/` project here is the reference implementation of the core loop, not a 1:1 mirror of the shipped UI.
 
 ---
 
@@ -299,17 +304,22 @@ Source lives in [`android/`](android) — a standard, buildable Gradle project i
 - **Unofficial client.** This drives the WhatsApp Web client, which Meta does not officially support for automation. Use a **spare number** — bans are possible. For a business, use the official WhatsApp Cloud API.
 - **Background pauses.** Android may throttle a backgrounded WebView; replies are instant when the app is open.
 - **WhatsApp changes.** WhatsApp sometimes renames internal page modules; if replies stop after an update, the injected helper needs a tweak.
-- **Package name.** The build uses `com.example.ilabmg`, so it installs **alongside** any earlier `com.example` build — uninstall the old one first if you only want one.
+- **Two packages.** The editions use `com.example.tsegst` (Blue) and `com.example.ilabmg` (Classic), so they install **alongside** each other and any older `com.example` build. Remove the ones you don't want.
 
 ---
 
 ## 🔖 Version & package
 
 - Version: **1.0** (versionCode `1`)
-- Package: `com.example.ilabmg`
 - minSdk 24 · targetSdk 36 · ~66 MB APK (includes offline Vosk speech models)
 - No API keys are embedded; add your own in-app
-- SHA-256: `d1253979798ba6283debf46a8f6128c98b1250d4847e6b109e404bd5a106db3e`
+
+| Edition | Package | SHA-256 |
+|---|---|---|
+| 🔵 **Blue** (main) | `com.example.tsegst` | `7aed8f9a3ef1db1bec366ecdc4536264d73201a9a5846552c43030e8fd6164b7` |
+| 🟢 **Classic** | `com.example.ilabmg` | `d1253979798ba6283debf46a8f6128c98b1250d4847e6b109e404bd5a106db3e` |
+
+> The screenshots above show the Classic theme; the Blue Edition uses the same layout with blue accents. Both editions can be installed at once.
 
 ---
 
