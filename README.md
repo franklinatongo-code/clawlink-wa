@@ -43,6 +43,22 @@ Screenshots from the current build. Every screen is a tool you can use on day on
 
 ---
 
+## 🔥 Caught in the wild
+
+Not a mockup. These are real WhatsApp conversations answered by the agent — no scripts, no canned lines, just the model doing its thing.
+
+| | |
+|:---:|:---:|
+| <img src="screenshots/07-live-chat.png" width="330" alt="Real WhatsApp chat: AI roasts a DLSS claim and reacts to a dog photo"/> | <img src="screenshots/08-live-vision.png" width="330" alt="Real WhatsApp chat: AI reads a sent screenshot and matches the banter"/> |
+| **It gets the joke.**<br>DLSS on an M5 MacBook? It fires back on the spot — then rolls with the dog pic like nothing happened. | **It reads the room — and the screenshot.**<br>Sent a snapshot of an iMessage thread, it caught the "Ryan energy", kept the banter going and asked if you're down for the game. |
+
+<p align="center">
+<sub>Names and chats shown with the owner's permission · want the same on your number?</sub><br>
+<a href="https://github.com/franklinatongo-code/clawlink-wa/releases/latest/download/ClawLink-WA-1.0.apk"><b>⬇️ Download ClawLink WA</b></a>
+</p>
+
+---
+
 ## ✨ Features
 
 A full AI WhatsApp agent and productivity suite in one APK — not just a reply bot.
