@@ -22,15 +22,23 @@
 
 No computer. No Node.js. No self-hosted server. No re-inventing the WhatsApp protocol. Just install the APK on your phone, link your number once, and let the AI do the talking.
 
+## 📸 See what you get
+
+Screenshots from the current build. Every screen is a tool you can use on day one.
+
+| Screenshot | What you can do with it |
+|:---:|---|
+| <img src="screenshots/01-home.png" width="230" alt="Home screen"/> | **Link once, then forget it.**<br>Scan a QR — or use an 8-digit code if your camera is busy — and ClawLink becomes a linked device, just like WhatsApp Desktop. The session stays on your phone, so you never scan again.<br><br>• QR with countdown + instant refresh<br>• "Use Phone Instead" pairing code<br>• Live WhatsApp Web view<br>• One-tap switch account |
+| <img src="screenshots/03-chats.png" width="230" alt="Chats workspace"/> | **Every chat, one clean workspace.**<br>Direct messages and groups land in a frosted-glass inbox with live AI status, so you always know what the agent is doing.<br><br>• Search contacts, groups and previews<br>• Filter All / Unread / Groups / Direct / Leads<br>• Unread badges + animated AI rings<br>• Tap a chat to reply, summarize, translate or export |
+| <img src="screenshots/04-text-ai.png" width="230" alt="Text AI assistant"/> | **An assistant that can actually use WhatsApp.**<br>Ask in plain English and watch it work — replies stream in while it shows each tool it runs.<br><br>• "Summarize my chat with John"<br>• "Text Mary I'll be 10 minutes late"<br>• Attach a photo or PDF for instant answers<br>• Save facts, set reminders, schedule messages |
+| <img src="screenshots/05-ai-capabilities.png" width="230" alt="AI capability switches"/> | **You decide what the AI can see and do.**<br>Fine-grained switches and permission tiers mean it never touches more than you allow.<br><br>• Direct chats and groups on separate switches<br>• Pictures, stickers, files/PDFs, voice notes<br>• Stealth mode — no AI giveaways<br>• Duplicate-reply protection + context engine |
+| <img src="screenshots/02-tools.png" width="230" alt="Tools hub"/> | **100+ tools in the same app.**<br>Stop installing ten utilities — the whole toolbox ships inside ClawLink.<br><br>• Vision + file tester<br>• Scheduled messages that send while the app is closed<br>• Quiet hours, away mode, keyword rules, broadcast<br>• QR maker, text/crypto/dev/math/finance calculators |
+| <img src="screenshots/06-ai-voice.png" width="230" alt="Voice and reply style"/> | **Talk to it. Make it sound like you.**<br>Choose how voice notes are transcribed and exactly how replies read.<br><br>• Voice: Off / Cloud / Offline (Vosk)<br>• NVIDIA NIM audio models (Parakeet, Canary, Whisper, Phi‑4)<br>• Reply styles: Natural Human, Short & Crisp, Formal<br>• Business Mode with live CRM |
+
 <p align="center">
-<img src="screenshots/01-home.png" width="240" alt="Home: link WhatsApp, live stats, AI capability toggles"/>
-<img src="screenshots/02-tools.png" width="240" alt="Tools: VL vision tester, scheduled messages, quiet hours"/>
-<img src="screenshots/03-chats.png" width="240" alt="Chats workspace with search and filters"/>
-</p>
-<p align="center">
-<img src="screenshots/04-text-ai.png" width="240" alt="Text AI assistant with quick actions"/>
-<img src="screenshots/05-ai-capabilities.png" width="240" alt="AI capability switches and conversation context engine"/>
-<img src="screenshots/06-ai-voice.png" width="240" alt="Voice transcription models and AI reply style"/>
+<b>One APK. No PC. No server. No Node. No extra apps.</b><br><br>
+<a href="https://github.com/franklinatongo-code/clawlink-wa/releases/latest/download/ClawLink-WA-1.0.apk"><img src="https://img.shields.io/badge/⬇️%20Download%20ClawLink%20WA%20for%20Android-free-25D366?style=for-the-badge" alt="Download"></a><br>
+<sub>Android 7.0+ · ~66 MB · link with a QR and you're live in under a minute</sub>
 </p>
 
 ---
