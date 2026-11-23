@@ -23,8 +23,14 @@
 No computer. No Node.js. No self-hosted server. No re-inventing the WhatsApp protocol. Just install the APK on your phone, link your number once, and let the AI do the talking.
 
 <p align="center">
-<img src="screenshots/01-home.png" width="260" alt="Home screen showing link status, chats, messages, AI replies"/>
-<img src="screenshots/02-tools.png" width="260" alt="Tools screen with automation settings"/>
+<img src="screenshots/01-home.png" width="240" alt="Home: link WhatsApp, live stats, AI capability toggles"/>
+<img src="screenshots/02-tools.png" width="240" alt="Tools: VL vision tester, scheduled messages, quiet hours"/>
+<img src="screenshots/03-chats.png" width="240" alt="Chats workspace with search and filters"/>
+</p>
+<p align="center">
+<img src="screenshots/04-text-ai.png" width="240" alt="Text AI assistant with quick actions"/>
+<img src="screenshots/05-ai-capabilities.png" width="240" alt="AI capability switches and conversation context engine"/>
+<img src="screenshots/06-ai-voice.png" width="240" alt="Voice transcription models and AI reply style"/>
 </p>
 
 ---
