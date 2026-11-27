@@ -21,63 +21,127 @@ and keeps working while the app is closed.
 
 ## See it
 
+Real screens. Real WhatsApp chats. No mock-ups.
+
+### It talks like a friend, not a bot
+
 <table>
 <tr>
-<td align="center" width="33%">
-<img src="screenshots/01-home.png" width="240" alt="Home screen: link your WhatsApp"/><br/>
-<b>Link once.</b><br/>
-QR code or 8-digit pairing code. The session stays on your phone, so you never scan again.
+<td align="center" width="50%">
+<img src="screenshots/10-whatsapp-casual-vision.png" width="340" alt="AI assistant replying casually and describing a photo of a laptop"/><br/>
+<b>Ask anything. It answers like a person.</b><br/>
+No corporate boilerplate. Send a photo of your desk and it names the laptop, reads the lock
+screen, and keeps the tone human.
 </td>
-<td align="center" width="33%">
-<img src="screenshots/03-chats.png" width="240" alt="Chats workspace"/><br/>
-<b>Every chat, one workspace.</b><br/>
-DMs and groups with live AI status, search, and All / Unread / Groups filters.
-</td>
-<td align="center" width="33%">
-<img src="screenshots/05-ai-capabilities.png" width="240" alt="AI capability switches"/><br/>
-<b>You set the boundaries.</b><br/>
-Per-capability switches for chats, groups, pictures, stickers, files, voice and alerts.
+<td align="center" width="50%">
+<img src="screenshots/16-whatsapp-photo-banter.png" width="340" alt="AI bantering about a dog photo and a laptop in a real chat"/><br/>
+<b>It reads the room — and the photo.</b><br/>
+Dog picture, laptop flex, running joke. It replies to what is actually in the image and matches
+the mood of the chat.
 </td>
 </tr>
 <tr>
-<td align="center" width="33%">
-<img src="screenshots/04-text-ai.png" width="240" alt="Text AI assistant"/><br/>
-<b>An assistant that can use WhatsApp.</b><br/>
-"Summarize my chat with John." "Text Mary I'm running late." Attach a photo or PDF.
+<td align="center" width="50%">
+<img src="screenshots/15-whatsapp-sticker-reply.png" width="340" alt="AI reading a sticker and replying in a real chat"/><br/>
+<b>Stickers included.</b><br/>
+Ask what a sticker said and it reads the meme back to you. Static, animated and Lottie stickers
+all understood.
 </td>
-<td align="center" width="33%">
-<img src="screenshots/06-ai-voice.png" width="240" alt="Voice and reply style"/><br/>
-<b>Talk to it. Make it sound like you.</b><br/>
-Cloud or offline transcription, NVIDIA NIM audio models, and reply-style presets.
-</td>
-<td align="center" width="33%">
-<img src="screenshots/02-tools.png" width="240" alt="Tools hub"/><br/>
-<b>A toolbox in the same APK.</b><br/>
-Scheduled messages, quiet hours, away mode, keyword rules, broadcast, QR, calculators.
+<td align="center" width="50%">
+<img src="screenshots/09-whatsapp-capabilities.png" width="340" alt="AI listing its capabilities inside WhatsApp"/><br/>
+<b>It knows its own toolbox.</b><br/>
+Ask "what can you do" and it explains its tools in plain language, so you always know what to
+ask next.
 </td>
 </tr>
 </table>
 
-### In the wild
+### Search your chats by what is inside the picture
 
-Real WhatsApp conversations, not mock-ups.
+ClawLink writes a vision description for every photo, sticker and file, so you can search your
+history the way you actually remember it.
 
 <table>
 <tr>
 <td align="center" width="33%">
-<img src="screenshots/07-live-chat.png" width="240" alt="AI replying in a real WhatsApp chat"/><br/>
+<img src="screenshots/11-search-by-media.png" width="300" alt="Search results for the word lap"/><br/>
+<b>Search "lap", find the laptop.</b><br/>
+Media results, matching messages and nearby context in one place.
+</td>
+<td align="center" width="33%">
+<img src="screenshots/12-search-stickers.png" width="300" alt="Search results for the word dog"/><br/>
+<b>Search "dog", surface the sticker.</b><br/>
+Every sticker gets a description, so plain text search finds images.
+</td>
+<td align="center" width="33%">
+<img src="screenshots/13-search-photos.png" width="300" alt="Search results for the word book"/><br/>
+<b>Search "book", land on the exact photo.</b><br/>
+"A man in a maroon shirt holding an open book" — that is the index doing its job.
+</td>
+</tr>
+</table>
+
+### The control room
+
+<table>
+<tr>
+<td align="center" width="50%">
+<img src="screenshots/14-connected-home.png" width="340" alt="Connected home screen with chat and message stats"/><br/>
+<b>One screen tells you it is alive.</b><br/>
+Connection status, 24 chats, 628 messages, media toggles and a one-tap catch-up briefing.
+</td>
+<td align="center" width="50%">
+<img src="screenshots/01-home.png" width="340" alt="Home screen to link WhatsApp"/><br/>
+<b>Link once, stay linked.</b><br/>
+QR code or 8-digit pairing code. The session lives on your phone, so you never scan again.
+</td>
+</tr>
+<tr>
+<td align="center" width="50%">
+<img src="screenshots/02-tools.png" width="340" alt="Tools hub"/><br/>
+<b>A toolbox in the same APK.</b><br/>
+Scheduled messages, quiet hours, away mode, keyword rules, broadcast, QR, calculators.
+</td>
+<td align="center" width="50%">
+<img src="screenshots/03-chats.png" width="340" alt="Chats workspace"/><br/>
+<b>Every chat, one workspace.</b><br/>
+DMs and groups with live AI status, search, and All / Unread / Groups filters.
+</td>
+</tr>
+<tr>
+<td align="center" width="50%">
+<img src="screenshots/05-ai-capabilities.png" width="340" alt="AI capability switches"/><br/>
+<b>You set the boundaries.</b><br/>
+Per-capability switches for chats, groups, pictures, stickers, files, voice and alerts.
+</td>
+<td align="center" width="50%">
+<img src="screenshots/04-text-ai.png" width="340" alt="Text AI assistant"/><br/>
+<b>An assistant that can use WhatsApp.</b><br/>
+"Summarize my chat with John." "Text Mary I'm running late." Attach a photo or PDF.
+</td>
+</tr>
+<tr>
+<td align="center" width="50%">
+<img src="screenshots/06-ai-voice.png" width="340" alt="Voice and reply style"/><br/>
+<b>Talk to it. Make it sound like you.</b><br/>
+Cloud or offline transcription, NVIDIA NIM audio models, and reply-style presets.
+</td>
+<td align="center" width="50%">
+<img src="screenshots/07-live-chat.png" width="340" alt="AI replying in a real WhatsApp chat"/><br/>
 <b>It holds a conversation.</b><br/>
 Quoted replies, reactions, and a personality that reads the room.
 </td>
-<td align="center" width="33%">
-<img src="screenshots/08-live-vision.png" width="240" alt="AI understanding a photo in WhatsApp"/><br/>
+</tr>
+<tr>
+<td align="center" width="50%">
+<img src="screenshots/08-live-vision.png" width="340" alt="AI understanding a photo in WhatsApp"/><br/>
 <b>It understands photos.</b><br/>
-Send an image and it replies to what is actually in the picture.
+Send an image and it replies to what is actually in the picture, not to the file name.
 </td>
-<td align="center" width="33%">
-<img src="screenshots/09-whatsapp-capabilities.png" width="240" alt="AI listing its capabilities in WhatsApp"/><br/>
-<b>It knows what it can do.</b><br/>
-Ask "what can you do" and it explains its tools in plain language.
+<td align="center" width="50%" valign="middle">
+<b>Ready to see it on your own chats?</b><br/><br/>
+<a href="https://github.com/franklinatongo-code/clawlink-wa/releases/latest/download/ClawLink-WA-1.0.apk"><b>Download the APK (66 MB) →</b></a><br/><br/>
+Android 8.0+. One QR scan. No PC, no server, no Node.js.
 </td>
 </tr>
 </table>
