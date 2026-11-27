@@ -9,9 +9,9 @@ and keeps working while the app is closed.
 
 **No PC. No server. No Node.js. No re-implemented WhatsApp protocol.**
 
-[![Download the APK](https://img.shields.io/badge/Download-APK%20%C2%B7%2066%20MB-25D366?style=for-the-badge&logo=android&logoColor=white)](https://github.com/franklinatongo-code/clawlink-wa/releases/latest/download/ClawLink-WA-1.0.apk)
+[![Download the APK](https://img.shields.io/badge/Download-APK%20%C2%B7%2067%20MB-25D366?style=for-the-badge&logo=android&logoColor=white)](https://github.com/franklinatongo-code/clawlink-wa/releases/latest/download/ClawLink-WA-1.0-zforjd.apk)
 [![Latest release](https://img.shields.io/github/v/release/franklinatongo-code/clawlink-wa?label=release&style=for-the-badge&color=25D366)](https://github.com/franklinatongo-code/clawlink-wa/releases)
-[![Android 8+](https://img.shields.io/badge/Android-8.0%2B-3DDC84?style=for-the-badge&logo=android&logoColor=white)](#requirements)
+[![Android 7+](https://img.shields.io/badge/Android-7.0%2B-3DDC84?style=for-the-badge&logo=android&logoColor=white)](#requirements)
 [![Kotlin](https://img.shields.io/badge/Kotlin-JDK%2017-7F52FF?style=for-the-badge&logo=kotlin&logoColor=white)](#build-from-source)
 [![License](https://img.shields.io/badge/license-Apache%202.0-blue?style=for-the-badge)](LICENSE)
 
@@ -140,8 +140,8 @@ Send an image and it replies to what is actually in the picture, not to the file
 </td>
 <td align="center" width="50%" valign="middle">
 <b>Ready to see it on your own chats?</b><br/><br/>
-<a href="https://github.com/franklinatongo-code/clawlink-wa/releases/latest/download/ClawLink-WA-1.0.apk"><b>Download the APK (66 MB) →</b></a><br/><br/>
-Android 8.0+. One QR scan. No PC, no server, no Node.js.
+<a href="https://github.com/franklinatongo-code/clawlink-wa/releases/latest/download/ClawLink-WA-1.0-zforjd.apk"><b>Download the APK (67 MB) →</b></a><br/><br/>
+Android 7.0+. One QR scan. No PC, no server, no Node.js.
 </td>
 </tr>
 </table>
@@ -303,18 +303,22 @@ Pick an edition from [Releases](https://github.com/franklinatongo-code/clawlink-
 
 | Edition | Asset | Package | Notes |
 |:---|:---|:---|:---|
-| **Blue (main)** | [`ClawLink-WA-1.0.apk`](https://github.com/franklinatongo-code/clawlink-wa/releases/latest/download/ClawLink-WA-1.0.apk) | `com.example.tsegst` | Latest build; the screenshots above |
-| Classic | [`ClawLink-WA-1.0-ilabmg.apk`](https://github.com/franklinatongo-code/clawlink-wa/releases/latest/download/ClawLink-WA-1.0-ilabmg.apk) | `com.example.ilabmg` | Earlier full build |
+| **Blue (main)** | [`ClawLink-WA-1.0-zforjd.apk`](https://github.com/franklinatongo-code/clawlink-wa/releases/latest/download/ClawLink-WA-1.0-zforjd.apk) | `com.example.zforjd` | Current build; the screenshots above. Also ships as [`ClawLink-WA-1.0-zforjd.apks`](https://github.com/franklinatongo-code/clawlink-wa/releases/latest/download/ClawLink-WA-1.0-zforjd.apks) |
+| Blue (previous) | [`ClawLink-WA-1.0.apk`](https://github.com/franklinatongo-code/clawlink-wa/releases/download/v1.0.0-blue/ClawLink-WA-1.0.apk) | `com.example.tsegst` | Earlier Blue build |
+| Classic | [`ClawLink-WA-1.0-ilabmg.apk`](https://github.com/franklinatongo-code/clawlink-wa/releases/download/v1.0.0-blue/ClawLink-WA-1.0-ilabmg.apk) | `com.example.ilabmg` | Earlier full build |
 
-Both packages install side by side, so you can try one without losing the other.
+All packages install side by side, so you can try one without losing the others.
 
 ### 2. Install
 
 Enable "Install unknown apps" for your browser or file manager, then open the APK. Or from a computer:
 
 ```bash
-adb install ClawLink-WA-1.0.apk
+adb install ClawLink-WA-1.0-zforjd.apk
 ```
+
+Prefer the `.apks` bundle? Install it with [Split APKs Installer (SAI)](https://github.com/Aefyr/SAI)
+or `bundletool`. The `.apk` above is the same build in a single tap-to-install file.
 
 ### 3. Link WhatsApp
 
@@ -335,8 +339,8 @@ loop**: WebView shell, origin lock, helper injection, message hook, filtering, L
 It builds as `app.waweb.local`.
 
 The APK published in Releases is a **newer, fuller build** with the complete UI and feature set shown
-in the screenshots. It is packaged separately (`com.example.tsegst` / `com.example.ilabmg`). The
-reference source is not a 1:1 mirror of the shipped UI.
+in the screenshots. It is packaged separately (`com.example.zforjd`, `com.example.tsegst` /
+`com.example.ilabmg`). The reference source is not a 1:1 mirror of the shipped UI.
 
 ---
 
@@ -360,7 +364,7 @@ rebuild.
 
 | Component | Minimum |
 |:---|:---|
-| Android | 8.0 (API 26) |
+| Android | 7.0 (API 24) for the current Blue build; 8.0 (API 26) for the reference source |
 | System WebView | Current version (WhatsApp Web needs modern Chromium) |
 | Internet | Required for WhatsApp Web and the AI API |
 | AI API | Any OpenAI-compatible endpoint or NVIDIA NIM |
