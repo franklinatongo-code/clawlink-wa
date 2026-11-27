@@ -1,102 +1,284 @@
-# ClawLink WA — AI WhatsApp Agent on Android
+<div align="center">
 
-**Your phone becomes an AI WhatsApp assistant. No computer, no server, no Node.js — just install and link.**
+# ClawLink WA
+
+### Your Android phone becomes an AI WhatsApp agent.
+
+Install the APK, scan one QR, and an AI answers your chats, understands photos and voice notes,
+and keeps working while the app is closed.
+
+**No PC. No server. No Node.js. No re-implemented WhatsApp protocol.**
+
+[![Download the APK](https://img.shields.io/badge/Download-APK%20%C2%B7%2066%20MB-25D366?style=for-the-badge&logo=android&logoColor=white)](https://github.com/franklinatongo-code/clawlink-wa/releases/latest/download/ClawLink-WA-1.0.apk)
+[![Latest release](https://img.shields.io/github/v/release/franklinatongo-code/clawlink-wa?label=release&style=for-the-badge&color=25D366)](https://github.com/franklinatongo-code/clawlink-wa/releases)
+[![Android 8+](https://img.shields.io/badge/Android-8.0%2B-3DDC84?style=for-the-badge&logo=android&logoColor=white)](#requirements)
+[![Kotlin](https://img.shields.io/badge/Kotlin-JDK%2017-7F52FF?style=for-the-badge&logo=kotlin&logoColor=white)](#build-from-source)
+[![License](https://img.shields.io/badge/license-Apache%202.0-blue?style=for-the-badge)](LICENSE)
+
+</div>
 
 ---
 
-## What It Does
+## See it
 
-ClawLink WA loads the real WhatsApp Web client inside your Android phone's own browser engine (WebView). It pairs exactly like WhatsApp Desktop — scan a QR code once, and the session persists across restarts. An AI then answers incoming messages automatically, understands photos and voice notes, and runs scheduled tasks while the app is closed.
+<table>
+<tr>
+<td align="center" width="33%">
+<img src="screenshots/01-home.png" width="240" alt="Home screen: link your WhatsApp"/><br/>
+<b>Link once.</b><br/>
+QR code or 8-digit pairing code. The session stays on your phone, so you never scan again.
+</td>
+<td align="center" width="33%">
+<img src="screenshots/03-chats.png" width="240" alt="Chats workspace"/><br/>
+<b>Every chat, one workspace.</b><br/>
+DMs and groups with live AI status, search, and All / Unread / Groups filters.
+</td>
+<td align="center" width="33%">
+<img src="screenshots/05-ai-capabilities.png" width="240" alt="AI capability switches"/><br/>
+<b>You set the boundaries.</b><br/>
+Per-capability switches for chats, groups, pictures, stickers, files, voice and alerts.
+</td>
+</tr>
+<tr>
+<td align="center" width="33%">
+<img src="screenshots/04-text-ai.png" width="240" alt="Text AI assistant"/><br/>
+<b>An assistant that can use WhatsApp.</b><br/>
+"Summarize my chat with John." "Text Mary I'm running late." Attach a photo or PDF.
+</td>
+<td align="center" width="33%">
+<img src="screenshots/06-ai-voice.png" width="240" alt="Voice and reply style"/><br/>
+<b>Talk to it. Make it sound like you.</b><br/>
+Cloud or offline transcription, NVIDIA NIM audio models, and reply-style presets.
+</td>
+<td align="center" width="33%">
+<img src="screenshots/02-tools.png" width="240" alt="Tools hub"/><br/>
+<b>A toolbox in the same APK.</b><br/>
+Scheduled messages, quiet hours, away mode, keyword rules, broadcast, QR, calculators.
+</td>
+</tr>
+</table>
+
+### In the wild
+
+Real WhatsApp conversations, not mock-ups.
+
+<table>
+<tr>
+<td align="center" width="33%">
+<img src="screenshots/07-live-chat.png" width="240" alt="AI replying in a real WhatsApp chat"/><br/>
+<b>It holds a conversation.</b><br/>
+Quoted replies, reactions, and a personality that reads the room.
+</td>
+<td align="center" width="33%">
+<img src="screenshots/08-live-vision.png" width="240" alt="AI understanding a photo in WhatsApp"/><br/>
+<b>It understands photos.</b><br/>
+Send an image and it replies to what is actually in the picture.
+</td>
+<td align="center" width="33%">
+<img src="screenshots/09-whatsapp-capabilities.png" width="240" alt="AI listing its capabilities in WhatsApp"/><br/>
+<b>It knows what it can do.</b><br/>
+Ask "what can you do" and it explains its tools in plain language.
+</td>
+</tr>
+</table>
+
+> Screenshots and the feature list below describe the full build published in
+> [Releases](https://github.com/franklinatongo-code/clawlink-wa/releases). The [`android/`](android)
+> source in this repo is the reference implementation of the core loop — see
+> [Source vs. release](#source-vs-release).
+
+---
+
+## What it does
+
+ClawLink WA loads the **real WhatsApp Web client** inside your phone's own browser engine (WebView).
+It pairs exactly like WhatsApp Desktop — scan a QR once, and the session persists across restarts.
+An AI then answers incoming messages automatically, understands photos, stickers, PDFs and voice
+notes, and runs scheduled work while the app is closed.
 
 | Traditional approach | ClawLink WA |
 |:---|:---|
 | Requires a computer or server | Runs entirely on your phone |
 | Needs Node.js, Puppeteer, Chrome | Uses the WebView already on your device |
-| Re-implements WhatsApp protocol | Loads the real `web.whatsapp.com` |
+| Re-implements the WhatsApp protocol | Loads the real `web.whatsapp.com` |
 | Complex setup, ongoing maintenance | Install APK → scan QR → done |
 
 ---
 
-## Why This Works
+## Feature highlights
 
-**Real WhatsApp Web, not a clone.**  
-The app opens `web.whatsapp.com` in a system WebView with a Chrome-like user agent. Cookies, localStorage, and IndexedDB persist the linked-device session exactly as the desktop client does.
+<details open>
+<summary><b>Linking, persistence and background operation</b></summary>
 
-**Same injection library as whatsapp-web.js.**  
-At page load, the app injects `wa_utils.js` (the upstream `Utils.js` from whatsapp-web.js) followed by `wa_boot.js`. This defines `window.WWebJS.*` helpers — `getChat`, `sendMessage`, `getMessageModel` — against WhatsApp's live webpack modules.
+- Fast QR pairing with countdown and instant refresh, plus an 8-digit **phone-number pairing code**
+- **Persistent login** — cookies, localStorage and IndexedDB stay on-device with auto-reconnect
+- **Live WhatsApp Web** view to inspect or interact with the session
+- **24/7 background operation** — foreground service, WakeLock, keepalive alarms, boot/update restart
+- One-tap **Switch Account**, and a **Quick Settings tile** to toggle auto-reply from the shade
+- **Home overview** — chats / messages / AI replies stats, media toggles, and a one-tap catch-up briefing
 
-**Inbound hook matches the upstream.**  
-`wa_boot.js` subscribes to `WAWebCollections.Msg.on('add')`, the same collection hook whatsapp-web.js uses. Each message is serialized and passed to Kotlin via a `@JavascriptInterface` bridge.
+</details>
 
-**Single-threaded, ordered processing.**  
-A dedicated executor handles messages one at a time. Deduplication via a persisted `SharedPreferences` set (capped at 1000 IDs) prevents re-replies on WebView reload. A timestamp cutoff ignores history synced at connect time.
+<details>
+<summary><b>AI agent and group intelligence</b></summary>
 
-**AI replies via any OpenAI-compatible endpoint.**  
-`Llm.kt` posts to `chat/completions` with a concise system prompt. Works with OpenAI, Groq, OpenRouter, Ollama, NVIDIA NIM, or any compatible API. Blank key disables auto-replies entirely.
+- Parallel, deduplicated reply pipeline with per-chat locks — no double-replies, even on reload
+- **Group intelligence** — separates 1:1 from groups, reads participant names and @mentions,
+  keeps per-group memory, and supports **mention-only** mode
+- **Hard send-layer group protection** — when group replies are off, sends are blocked below the prompt
+- **Media understanding** — vision for photos, static/animated WebP and Lottie stickers, PDFs and
+  documents, plus voice notes via Cloud AI or **offline Vosk**
+- **Natural realism** — typing indicators, read receipts, delay, quoted replies, optional signature
+- Prompt-injection guard and per-chat permission tiers (Standard / Restricted / Trusted / Blocked)
 
-**Send path returns into WhatsApp.**  
-`__waSend(chatId, text, quotedId)` resolves the chat via `WWebJS.getChat`, sends through `WWebJS.sendMessage` (quoting when possible), and reports success or failure back to Kotlin.
+</details>
+
+<details>
+<summary><b>Chats workspace</b></summary>
+
+- Frosted-glass UI with single-pane phone layout and list-detail tablet/foldable layout
+- **Filters and live search** — All, Unread, Groups, Direct, Leads & CRM
+- **Business Command HUD** — live CRM metrics and per-chat category badges
+- **Rich bubbles** — quoted previews, media/voice insight chips, inspect media, translate,
+  read aloud, dictation, export to Markdown
+- **Manual AI dock** — reply with AI now, keep-replying catch-up, smart draft, one-tap summarize
+- Per-contact and per-group rules — auto-reply, permission tier, custom prompt, language, style,
+  context window, CRM category and saved memory facts
+
+</details>
+
+<details>
+<summary><b>Personal assistant (Text AI)</b></summary>
+
+- iMessage-style chat with streamed replies, live tool status, reactions, copy, delete, TTS, dictation
+- **Natural-language WhatsApp control** — list chats, read or summarize a conversation, update a
+  contact's instructions, save a fact, send a message (respecting group permissions), or schedule one
+- **Multimodal attachments** — images via the Android photo picker, plus PDFs, audio and text
+- Contact-picker shortcut and built-in math plus device telemetry tools
+
+</details>
+
+<details>
+<summary><b>AI brain, context and providers</b></summary>
+
+- Capability toggles for direct chats, groups, pictures, stickers, files/PDFs, voice and alerts
+- **Voice mode** — Off / Cloud / Offline (Vosk) with downloadable language packs
+- **Personality presets** plus temperature, token cap, delay, streaming, name, prompt, style, language
+- **Context modes** — hybrid recent + summary, recent only, summary only, with an N-message reader
+- **Business Mode** — brand name, reply tone, and a products / pricing / hours catalog
+- **Multi-provider routing** — NVIDIA NIM or any OpenAI-compatible endpoint, encrypted key, live
+  endpoint tester, automatic fallback, and a searchable model catalog
+
+</details>
+
+<details>
+<summary><b>Automation and productivity</b></summary>
+
+- **Scheduled messages** that send while the app is closed
+- **Quiet Hours / DND** with VIP bypass, **away / vacation auto-reply**, welcome messages, auto-react
+- **Keyword rules** (contains / exact / prefix / regex), cooldown, snippets, multi-chat broadcast
+- Vision and file tester, Pomodoro, stopwatch, box breathing, to-do, habits, quick notes
+- QR maker, WhatsApp formatting, text stats, case converters, slugger, sort/dedupe, extractors
+- Scientific calculator, unit converter, tip splitter, loan/EMI, BMI, countdowns
+- Password / UUID, JSON, Base64, URL, Hex, Binary, SHA-256/512, MD5, HMAC, JWT, regex, epoch, ROT13,
+  Morse, world clocks, contrast checker, dice/coin/random
+- Themes (Light / Dark / OLED / System), haptics, device telemetry, JSON backup and restore
+
+</details>
 
 ---
 
-## Architecture at a Glance
+## How it works
+
+ClawLink WA does **not** re-implement WhatsApp. It loads the real `web.whatsapp.com` inside Android's
+system WebView — the same browser already on your phone — and injects a small JavaScript helper that
+talks back to the app.
 
 ```
-┌────────────────────────────────────────────────────────────┐
-│  Android Phone                                             │
-│                                                            │
-│  WebView → https://web.whatsapp.com/                       │
-│       │                                                     │
-│       ├─► wa_utils.js  (upstream whatsapp-web.js helpers)  │
-│       ├─► wa_boot.js   (hooks Msg.on('add'), defines      │
-│       │                __waSend, bridges to AndroidWA)     │
-│       │                                                     │
-│       ▼                                                     │
-│  AndroidWA (@JavascriptInterface)                          │
-│       │                                                     │
-│       ▼                                                     │
-│  Kotlin Engine (single-thread executor)                    │
-│       ├─ filter: fromMe, groups, backlog, empty IDs        │
-│       ├─ dedupe: persisted SeenStore (1000 IDs)            │
-│       ├─ type check: text only (extensible)                │
-│       │                                                     │
-│       ▼                                                     │
-│  Llm.reply(text) → OpenAI-compatible API                   │
-│       │                                                     │
-│       ▼                                                     │
-│  window.__waSend(chatId, answer, quotedId)                 │
-│       │                                                     │
-│       ▼                                                     │
-│  WhatsApp Web receives reply                               │
-└────────────────────────────────────────────────────────────┘
+┌─────────────────────────────────────────────────────────┐
+│  Your phone                                             │
+│                                                         │
+│  WhatsApp Web (real client, inside WebView)             │
+│  ┌─────────────┐                                        │
+│  │  New msg    │ ──►  Msg.on('add')                      │
+│  └─────────────┘      (wa_boot.js)                       │
+│                                                         │
+│  AndroidWA  (@JavascriptInterface)                      │
+│     inbound JSON ──────────────────────────► Kotlin     │
+│                                                         │
+│  Kotlin engine                                          │
+│     filter → dedupe → seen → typing ON                  │
+│                                                         │
+│  Your AI (OpenAI-compatible / NVIDIA NIM)               │
+│     writes the reply                                    │
+│                                                         │
+│  Kotlin engine                                          │
+│     typing OFF → __waReply() → WhatsApp                 │
+│                                                         │
+│  ┌─────────────┐                                        │
+│  │ Sent        │ ◄────── window.WWebJS.sendMessage      │
+│  └─────────────┘                                        │
+└─────────────────────────────────────────────────────────┘
 ```
 
----
+1. **Pair** — scan the QR with WhatsApp → Linked devices → Link a device
+2. **Listen** — `wa_boot.js` hooks `Msg.on('add')` and forwards new messages through `AndroidWA`
+3. **Think** — Kotlin calls `Llm.reply(chatId, text)`; your AI writes the words
+4. **Send** — `__waSend()` sends the reply back into WhatsApp, optionally quoting the original
 
-## Current Capabilities
-
-- **Auto-reply** to incoming text messages (groups optional)
-- **Persistent session** — survives force-stop, reboot, app update
-- **Deduplication** — no double-replies on WebView reload
-- **Backlog protection** — ignores history synced at connect
-- **Ping test** — `!ping` → `pong` verifies the loop is live
-- **Configurable AI** — swap endpoint, model, prompt in `Llm.kt`
-- **Zero external dependencies** — no server, no Node, no bundled Chromium
+Want the engine room — webpack module registry, ciphertext events, the bridge threat model,
+persistence internals and failure modes? Read **[HOW_IT_WORKS.md](HOW_IT_WORKS.md)**.
 
 ---
 
-## Requirements
+## Get started
 
-| Component | Minimum |
-|:---|:---|
-| Android | 7.0 (API 24) |
-| System WebView | Current version (WhatsApp Web requires modern Chromium) |
-| Internet | Required for WhatsApp Web and AI API |
-| AI API | Any OpenAI-compatible endpoint (key added in `Llm.kt`) |
+### 1. Download
+
+Pick an edition from [Releases](https://github.com/franklinatongo-code/clawlink-wa/releases):
+
+| Edition | Asset | Package | Notes |
+|:---|:---|:---|:---|
+| **Blue (main)** | [`ClawLink-WA-1.0.apk`](https://github.com/franklinatongo-code/clawlink-wa/releases/latest/download/ClawLink-WA-1.0.apk) | `com.example.tsegst` | Latest build; the screenshots above |
+| Classic | [`ClawLink-WA-1.0-ilabmg.apk`](https://github.com/franklinatongo-code/clawlink-wa/releases/latest/download/ClawLink-WA-1.0-ilabmg.apk) | `com.example.ilabmg` | Earlier full build |
+
+Both packages install side by side, so you can try one without losing the other.
+
+### 2. Install
+
+Enable "Install unknown apps" for your browser or file manager, then open the APK. Or from a computer:
+
+```bash
+adb install ClawLink-WA-1.0.apk
+```
+
+### 3. Link WhatsApp
+
+Open ClawLink WA → **Link WhatsApp** → on your phone go to **WhatsApp → Linked devices → Link a
+device** → scan the QR shown in the app.
+
+### 4. Configure your AI
+
+Enter your AI endpoint and key (OpenAI-compatible or NVIDIA NIM). Your AI now answers incoming
+chats automatically.
 
 ---
 
-## Build from Source
+## Source vs. release
+
+The [`android/`](android) project in this repository is the **reference implementation of the core
+loop**: WebView shell, origin lock, helper injection, message hook, filtering, LLM call, and send.
+It builds as `app.waweb.local`.
+
+The APK published in Releases is a **newer, fuller build** with the complete UI and feature set shown
+in the screenshots. It is packaged separately (`com.example.tsegst` / `com.example.ilabmg`). The
+reference source is not a 1:1 mirror of the shipped UI.
+
+---
+
+## Build from source
+
+You need **JDK 17** and the **Android SDK** (`compileSdk 35`).
 
 ```bash
 cd android
@@ -104,14 +286,24 @@ cd android
 # Output: app/build/outputs/apk/debug/app-debug.apk
 ```
 
-**Prerequisites:** JDK 17, Android SDK (compileSdk 34)
-
-**Configure your AI:** Edit `BASE_URL`, `MODEL`, `API_KEY` in  
-`app/src/main/java/app/waweb/local/Llm.kt`
+To point the AI at your own endpoint, edit the three constants at the top of
+[`Llm.kt`](android/app/src/main/java/app/waweb/local/Llm.kt) (`BASE_URL`, `MODEL`, `API_KEY`), then
+rebuild.
 
 ---
 
-## Project Structure
+## Requirements
+
+| Component | Minimum |
+|:---|:---|
+| Android | 8.0 (API 26) |
+| System WebView | Current version (WhatsApp Web needs modern Chromium) |
+| Internet | Required for WhatsApp Web and the AI API |
+| AI API | Any OpenAI-compatible endpoint or NVIDIA NIM |
+
+---
+
+## Project structure
 
 ```
 android/
@@ -133,52 +325,44 @@ android/
 
 ---
 
-## Known Limitations (Honest)
+## Known limitations (honest)
 
-- **Background throttling** — Android may pause a backgrounded WebView. Replies are instant when the app is foregrounded. A foreground service with WakeLock would improve this.
-- **WhatsApp module drift** — WhatsApp occasionally renames internal webpack modules. If replies stop after a WhatsApp Web update, `wa_boot.js` needs a tweak.
-- **Text-only replies** — Image, document, and voice note handling are not yet implemented in the filtering layer.
-- **Single-threaded AI** — A slow LLM call blocks other chats. A small thread pool per chat would scale better.
-- **Unofficial client** — This automates WhatsApp Web, which Meta does not officially support. Use a spare number. For production business use, use the [WhatsApp Cloud API](https://developers.facebook.com/docs/whatsapp/cloud-api).
+- **Unofficial client** — this automates WhatsApp Web, which Meta does not officially support. Use a
+  spare number. For production business use, use the
+  [WhatsApp Cloud API](https://developers.facebook.com/docs/whatsapp/cloud-api).
+- **Background throttling** — Android may pause a backgrounded WebView. The shipped build uses a
+  foreground service and WakeLock; the reference source does not.
+- **WhatsApp module drift** — WhatsApp occasionally renames internal webpack modules. If replies stop
+  after a WhatsApp Web update, the injected helpers need a tweak.
+- **Reference source is text-only** — image, document and voice handling live in the shipped build,
+  not in the `android/` reference implementation.
+- **Single-threaded reference loop** — a slow LLM call blocks other chats in the reference source.
+  The shipped build parallelises per chat.
 
 ---
 
 ## Roadmap
 
-- [ ] Foreground service + WakeLock for true background reliability
-- [ ] Media understanding (vision, voice transcription, stickers)
-- [ ] Group intelligence (mentions, per-group memory, mention-only mode)
-- [ ] Per-contact/group rules (custom prompts, permission tiers)
-- [ ] Scheduled message queue (sends while app closed)
-- [ ] Offline voice via Vosk
-- [ ] Multi-provider AI routing with fallback
-- [ ] Settings UI for endpoint/model/prompt (no rebuild needed)
+- [ ] Publish the full UI source
+- [ ] Foreground service + WakeLock in the reference source
+- [ ] Media understanding in the reference source (vision, voice transcription, stickers)
+- [ ] Settings UI in the reference source (no rebuild needed)
+- [ ] Offline voice via Vosk in the reference source
 
 ---
 
 ## License
 
-Apache 2.0 — see [`LICENSE`](LICENSE)
+Apache 2.0 — see [`LICENSE`](LICENSE).
 
-The injected helpers in `assets/wa_utils.js` derive from [whatsapp-web.js](https://github.com/pedroslopez/whatsapp-web.js) (Apache 2.0). The shipped build uses a trimmed, custom implementation.
+The injected helpers in `assets/wa_utils.js` derive from
+[whatsapp-web.js](https://github.com/pedroslopez/whatsapp-web.js) (Apache 2.0). See
+[`THIRD_PARTY_NOTICES.md`](THIRD_PARTY_NOTICES.md).
 
 ---
 
 ## Disclaimer
 
-ClawLink WA is not affiliated with, endorsed by, or connected to WhatsApp, Meta, or the whatsapp-web.js maintainers. This is an independent project for educational and personal automation purposes.
-
----
-
-## Get Started
-
-1. **Build the APK** (see above) or download a release
-2. **Install** on Android 7.0+ with an up-to-date System WebView
-3. **Open the app** → tap "Link WhatsApp"
-4. **Scan the QR** with your WhatsApp (Linked Devices → Link a Device)
-5. **Add your API key** to `Llm.kt` and rebuild, or wait for the in-app settings UI
-6. **Watch it work** — incoming messages get AI replies automatically
-
----
-
-*Clean architecture. Real WhatsApp Web. Your AI, your phone, your rules.*
+ClawLink WA is not affiliated with, endorsed by, or connected to WhatsApp, Meta, or the
+whatsapp-web.js maintainers. This is an independent project for educational and personal automation
+purposes.
